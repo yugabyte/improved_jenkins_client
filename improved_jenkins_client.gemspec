@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
-  s.authors = ["Kannan Manickam", "Yugabyte engineering team"]
+  s.authors = ["Kannan Manickam (the original jenkins_api_client gem)", 
+               "Yugabyte Engineering Team (improvements)"]
   s.description = 
       "\nThis is a simple and easy-to-use Jenkins Api client with features focused on" +
       "\nautomating Job configuration programaticaly. Based on the improved_jenkins_client with" +
@@ -18,7 +19,7 @@ Gem::Specification.new do |s|
   s.executables = ['jenkinscli']
   s.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{lib/|bin/|java_deps/|gemspec}) }
   s.require_paths = ['lib']
-  s.homepage = 'https://github.com/yugabyte-db/improved-ruby-jenkins-client'
+  s.homepage = 'https://github.com/yugabyte-db/ruby-jenkins-client'
   s.required_ruby_version = ::Gem::Requirement.new('~> 2.1')
   s.rubygems_version = "2.4.5.1"
   s.summary = "Improved Jenkins JSON API Client"
