@@ -723,7 +723,7 @@ module JenkinsApi
       # @param [String] job_name
       #
       def get_builds(job_name, options = {})
-        @logger.info "Obtaining the build details of '#{job_name}'"
+        @logger.info "Obtaining the builds of job '#{job_name}'"
         url = "/job/#{path_encode job_name}"
 
         tree = options[:tree]

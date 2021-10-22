@@ -424,9 +424,9 @@ module JenkinsApi
       @logger.debug "GET #{to_get}"
       response = make_http_request(request)
       if raw_response
-        handle_exception(response, "raw")
+        handle_exception(response, "raw", full_url: to_get)
       else
-        handle_exception(response, "body", url_suffix =~ /json/)
+        handle_exception(response, "body", url_suffix =~ /json/, full_url: to_get)
       end
     end
 
@@ -797,8 +797,11 @@ module JenkinsApi
     # @raise [Exceptions::ApiException] Any other exception returned from
     #   Jenkins that are not categorized in the API Client.
     #
-    def handle_exception(response, to_send = "code", send_json = false)
+    def handle_exception(response, to_send = "code", send_json = false, full_url: nil)
       msg = "HTTP Code: #{response.code}, Response Body: #{response.body}"
+      unless full_url.nil?
+        msg += " URL: #{full_url}"
+      end
       @logger.debug msg
       case response.code.to_i
       # As of Jenkins version 1.519, the job builds return a 201 status code
