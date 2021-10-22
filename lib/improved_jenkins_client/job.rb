@@ -20,7 +20,7 @@
 # THE SOFTWARE.
 #
 
-require 'jenkins_api_client/urihelper'
+require 'improved_jenkins_client/urihelper'
 
 module JenkinsApi
   class Client
@@ -209,7 +209,7 @@ module JenkinsApi
       #     :keep_dependencies => true,
       #     :concurrent_build => true,
       #     :scm_provider => "git",
-      #     :scm_url => "git://github.com./arangamani/jenkins_api_client.git",
+      #     :scm_url => "git://github.com./arangamani/improved_jenkins_client.git",
       #     :scm_branch => "master",
       #     :shell_command => "bundle install\n rake func_tests"
       #   )

@@ -20,33 +20,33 @@
 # THE SOFTWARE.
 #
 
-require 'jenkins_api_client/version'
-require 'jenkins_api_client/exceptions'
-require 'jenkins_api_client/client'
-require 'jenkins_api_client/job'
-require 'jenkins_api_client/node'
-require 'jenkins_api_client/system'
-require 'jenkins_api_client/view'
-require 'jenkins_api_client/build_queue'
-require 'jenkins_api_client/plugin_manager'
-require 'jenkins_api_client/user'
-require 'jenkins_api_client/root'
+require 'improved_jenkins_client/version'
+require 'improved_jenkins_client/exceptions'
+require 'improved_jenkins_client/client'
+require 'improved_jenkins_client/job'
+require 'improved_jenkins_client/node'
+require 'improved_jenkins_client/system'
+require 'improved_jenkins_client/view'
+require 'improved_jenkins_client/build_queue'
+require 'improved_jenkins_client/plugin_manager'
+require 'improved_jenkins_client/user'
+require 'improved_jenkins_client/root'
 
-require 'jenkins_api_client/cli/helper'
-require 'jenkins_api_client/cli/base'
-require 'jenkins_api_client/cli/job'
-require 'jenkins_api_client/cli/node'
-require 'jenkins_api_client/cli/system'
+require 'improved_jenkins_client/cli/helper'
+require 'improved_jenkins_client/cli/base'
+require 'improved_jenkins_client/cli/job'
+require 'improved_jenkins_client/cli/node'
+require 'improved_jenkins_client/cli/system'
 
 module JenkinsApi
   class Client
     module PluginSettings
       class InvalidType < Exception; end
 
-      autoload :Base, 'jenkins_api_client/plugin_settings/base'
-      autoload :Hipchat, 'jenkins_api_client/plugin_settings/hipchat'
-      autoload :WorkspaceCleanup, 'jenkins_api_client/plugin_settings/workspace_cleanup'
-      autoload :Collection, 'jenkins_api_client/plugin_settings/collection'
+      autoload :Base, 'improved_jenkins_client/plugin_settings/base'
+      autoload :Hipchat, 'improved_jenkins_client/plugin_settings/hipchat'
+      autoload :WorkspaceCleanup, 'improved_jenkins_client/plugin_settings/workspace_cleanup'
+      autoload :Collection, 'improved_jenkins_client/plugin_settings/collection'
     end
   end
 end

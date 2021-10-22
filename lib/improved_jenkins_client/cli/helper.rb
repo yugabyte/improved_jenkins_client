@@ -42,10 +42,10 @@ module JenkinsApi
           creds = YAML.load_file(
             File.expand_path(options[:creds_file], __FILE__)
           )
-        elsif File.exist?("#{ENV['HOME']}/.jenkins_api_client/login.yml")
+        elsif File.exist?("#{ENV['HOME']}/.improved_jenkins_client/login.yml")
           creds = YAML.load_file(
             File.expand_path(
-              "#{ENV['HOME']}/.jenkins_api_client/login.yml", __FILE__
+              "#{ENV['HOME']}/.improved_jenkins_client/login.yml", __FILE__
             )
           )
         else

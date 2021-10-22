@@ -20,7 +20,7 @@
 # THE SOFTWARE.
 #
 
-require 'jenkins_api_client/urihelper'
+require 'improved_jenkins_client/urihelper'
 
 module JenkinsApi
   class Client
@@ -136,7 +136,7 @@ module JenkinsApi
         @logger.info "Creating a dumb slave '#{params[:name]}'"
         @logger.debug "Creating a dumb slave with params: #{params.inspect}"
         default_params = {
-          :description => "Automatically created through jenkins_api_client",
+          :description => "Automatically created through improved_jenkins_client",
           :executors => 2,
           :remote_fs => "/var/jenkins",
           :labels => params[:name],

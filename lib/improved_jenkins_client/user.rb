@@ -21,7 +21,7 @@
 #
 
 require 'timeout'
-require 'jenkins_api_client/urihelper'
+require 'improved_jenkins_client/urihelper'
 
 module JenkinsApi
   class Client
