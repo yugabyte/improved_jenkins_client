@@ -8,11 +8,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
-  s.authors = ["Kannan Manickam", "Mikhail Bautin"]
+  s.authors = ["Kannan Manickam", "Yugabyte engineering team"]
   s.description = 
       "\nThis is a simple and easy-to-use Jenkins Api client with features focused on" +
       "\nautomating Job configuration programaticaly. Based on the jenkins_api_client with" +
-      "\nimprovements by Yugabyte."
+      "\nimprovements by Yugabyte engineering team."
 
   s.email = ["yugabyte-ci@users.noreply.github.com"]
   s.executables = ['jenkinscli']

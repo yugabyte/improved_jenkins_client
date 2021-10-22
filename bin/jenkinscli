@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
-require 'jenkins_api_client'
+require 'improved_jenkins_client'
 JenkinsApi::CLI::Base.start
