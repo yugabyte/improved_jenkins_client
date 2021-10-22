@@ -72,7 +72,8 @@ module JenkinsApi
       "ca_file",
       "follow_redirects",
       "identity_file",
-      "cookies"
+      "cookies",
+      "pretty_json_responses"
     ].freeze
 
     # Initialize a Client object with Jenkins CI server credentials
@@ -106,6 +107,7 @@ module JenkinsApi
     # @option args [Fixnum] :log_level (Logger::INFO) The level for messages to be logged. Should be one of:
     #   Logger::DEBUG (0), Logger::INFO (1), Logger::WARN (2), Logger::ERROR (2), Logger::FATAL (3)
     # @option args [String] :cookies Cookies to be sent with all requests in the format: name=value; name2=value2
+    # @option args [Boolean] :pretty_json_responses Whether to append pretty=true to most JSON GET requests.
     #
     # @return [JenkinsApi::Client] a client object to Jenkins API
     #
@@ -415,10 +417,18 @@ module JenkinsApi
                         raw_response = false)
       url_prefix = "#{@jenkins_path}#{url_prefix}"
       to_get = ""
+
+
       if tree
         to_get = "#{url_prefix}#{url_suffix}?#{tree}"
+        query_param_separator = "&"
       else
         to_get = "#{url_prefix}#{url_suffix}"
+        query_param_separator = "?"
+      end
+      if @pretty_json_responses && url_suffix == "/api/json"
+        to_get += query_param_separator
+        to_get += "pretty=true"
       end
       request = Net::HTTP::Get.new(to_get)
       @logger.debug "GET #{to_get}"
