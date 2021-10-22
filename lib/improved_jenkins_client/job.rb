@@ -731,6 +731,65 @@ module JenkinsApi
         response_json["builds"]
       end
 
+      # Yields all builds using the allBuilds API endpoint.
+      #
+      # @param job_name [String] the job to retrieve builds for
+      # @param fields [Array] the fields to retrieve from each build. ['*'] by default, meaning all 
+      #   fields
+      # @param limit [Integer] the maximum total number of builds to retrieve 
+      # @param page_size [Integer] the number of builds to retrieve at once
+      #
+      def each_build(
+          job_name,
+          fields: ['*'],
+          start_index: 0,
+          limit: nil,
+          page_size: 100)
+        unless page_size.is_a?(Integer) && page_size >= 1
+          raise "Invalid page size: #{page_size} (#{page_size.class}) -- must be at least one"
+        end
+        unless start_index.is_a?(Integer) && start_index >= 0
+          raise "Invalid start index: #{start_index} (#{start_index.class}), must be a " +
+                "nonnegative integer"
+        end
+        unless limit.nil? || limit.is_a?(Integer) && limit >= 0
+          raise "Invalid limit: #{limit} (#{limit.class}) -- must be nil or a non-negative integer"
+        end
+        unless fields.is_a?(Array) && fields.size >= 1
+          raise "Invalid array of fields to retrieve: #{fields} (#{fields.class}), must have at " +
+                "least one element"
+        end
+
+        start_index = 0
+        url = "/job/#{path_encode job_name}"
+        fields_str = fields.join(',')
+        while limit.nil? || start_index < limit do
+          @logger.info(
+              "Obtaining the build details of '#{job_name}' (fields: #{fields}) starting at " +
+              "index #{start_index} with page size #{page_size}")
+
+          end_index = start_index + page_size
+          end_index = limit if !limit.nil? && end_index > limit
+
+          break if start_index >= end_index
+
+          tree = "allBuilds[#{fields_str}]{#{start_index},#{end_index}}"
+          response_json = @client.api_get_request(url, tree_string(tree))
+          build_range = response_json["allBuilds"]
+
+          break if build_range.size == 0  # End of results.
+
+          build_range.each do |result|
+            yield result
+          end
+
+          # We got some results but less than what we asked for. This must be the last page.
+          break if build_range.size < end_index - start_index
+
+          start_index += page_size
+        end
+      end
+
       # This method maps the color to status of a job
       #
       # @param [String] color color given by the API for a job
