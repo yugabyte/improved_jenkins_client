@@ -726,7 +726,7 @@ module JenkinsApi
         @logger.info "Obtaining the build details of '#{job_name}'"
         url = "/job/#{path_encode job_name}"
 
-        tree = options[:tree] || nil
+        tree = options[:tree]
         response_json = @client.api_get_request url, tree_string(tree)
         response_json["builds"]
       end
@@ -1193,13 +1193,14 @@ module JenkinsApi
       #
       # @param [String] job_name
       # @param [Number] build_num
+      # @param [String] tree
       #
-      def get_build_details(job_name, build_num)
+      def get_build_details(job_name, build_num, tree: nil)
         build_num = get_current_build_number(job_name) if build_num == 0
-        @logger.info "Obtaining the build details of '#{job_name}'" +
-          " Build ##{build_num}"
+        log_msg = "Obtaining the build details of '#{job_name}' Build ##{build_num}"
+        log_msg += " (with tree=...)" unless tree.nil?
 
-        @client.api_get_request("/job/#{path_encode job_name}/#{build_num}/")
+        @client.api_get_request("/job/#{path_encode job_name}/#{build_num}/", tree_string(tree))
       end
 
       # Change the description of a specific job
