@@ -9,7 +9,7 @@ require 'yaml'
 describe JenkinsApi::Client do
   context "Given valid credentials and server information are given" do
     before(:all) do
-      @creds_file = '~/.jenkins_api_client/spec.yml'
+      @creds_file = '~/.improved_jenkins_client/spec.yml'
       # Grabbing just the server IP in a variable so we can check
       # for wrong credentials
       @server_ip = YAML.load_file(
@@ -108,7 +108,7 @@ describe JenkinsApi::Client do
   end
 
   context "Given a server with a self-signed SSL certificate" do
-    let(:creds_file) { '~/.jenkins_api_client/spec.yml' }
+    let(:creds_file) { '~/.improved_jenkins_client/spec.yml' }
     let(:creds) {
       creds = YAML.load_file(File.expand_path(creds_file, __FILE__))
       creds[:server_port] = 8443
@@ -125,7 +125,7 @@ describe JenkinsApi::Client do
 
     context "Given a client configured to trust the server's certificate" do
       before do
-        creds[:ca_file] = File.expand_path('~/.jenkins_api_client/server.cert.pem', __FILE__)
+        creds[:ca_file] = File.expand_path('~/.improved_jenkins_client/server.cert.pem', __FILE__)
       end
 
       it "Should connect without an error" do

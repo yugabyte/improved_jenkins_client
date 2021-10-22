@@ -10,7 +10,7 @@ describe JenkinsApi::Client::Job do
   context "With properly initialized client" do
     before(:all) do
       @helper = JenkinsApiSpecHelper::Helper.new
-      @creds_file = '~/.jenkins_api_client/spec.yml'
+      @creds_file = '~/.improved_jenkins_client/spec.yml'
       @creds = YAML.load_file(File.expand_path(@creds_file, __FILE__))
       @job_name_prefix = 'awesome_rspec_test_job'
       @filter = "^#{@job_name_prefix}.*"
@@ -118,13 +118,13 @@ describe JenkinsApi::Client::Job do
           params = {
             :name => name,
             :scm_provider => "git",
-            :scm_url => "git://github.com./arangamani/jenkins_api_client.git",
+            :scm_url => "git://github.com./arangamani/improved_jenkins_client.git",
             :scm_branch => "master"
           }
           test_and_validate(
             name,
             params,
-            "<url>git://github.com./arangamani/jenkins_api_client.git</url>"
+            "<url>git://github.com./arangamani/improved_jenkins_client.git</url>"
           )
         end
         it "Should create a freestyle job with SVN SCM provider" do

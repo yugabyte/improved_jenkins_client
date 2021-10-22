@@ -94,7 +94,7 @@ describe JenkinsApi::Client::Job do
           params = {
             :name => "test_job_using_params_git",
             :scm_provider => "git",
-            :scm_url => "git://github.com/arangamani/jenkins_api_client/git",
+            :scm_url => "git://github.com/arangamani/improved_jenkins_client/git",
             :scm_branch => "master",
             :scm_credentials_id => 'foobar'
           }

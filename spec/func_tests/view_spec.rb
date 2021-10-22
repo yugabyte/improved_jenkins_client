@@ -9,7 +9,7 @@ require 'yaml'
 describe JenkinsApi::Client::View do
   context "With properly initialized client" do
     before(:all) do
-      @creds_file = '~/.jenkins_api_client/spec.yml'
+      @creds_file = '~/.improved_jenkins_client/spec.yml'
       @valid_post_responses = [200, 201, 302]
       @node_name = 'master'
       begin

@@ -1,4 +1,4 @@
-require File.expand_path('../../../lib/jenkins_api_client', __FILE__)
+require File.expand_path('../../../lib/improved_jenkins_client', __FILE__)
 require 'logger'
 require 'json'
 
