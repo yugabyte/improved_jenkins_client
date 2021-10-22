@@ -3,7 +3,7 @@
 # starts an IRB session so you can interactively play with the API.
 
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
-require 'jenkins_api_client'
+require 'improved_jenkins_client'
 require 'yaml'
 require 'irb'
 
@@ -32,7 +32,7 @@ def get_from_stdin(prompt, mask = false)
 end
 
 if ARGV.empty?
-  config_file = '~/.jenkins_api_client/login.yml'
+  config_file = '~/.improved_jenkins_client/login.yml'
 else
   config_file = ARGV.shift
 end

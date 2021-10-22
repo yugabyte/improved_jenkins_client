@@ -20,7 +20,7 @@ cat /var/log/jenkins/jenkins.log
 echo `sudo service jenkins status`
 
 # Create the credentials file used by functional tests
-sudo mkdir ~/.jenkins_api_client
-sudo cp -f travis/spec.yml ~/.jenkins_api_client/spec.yml
+sudo mkdir ~/.improved_jenkins_client
+sudo cp -f travis/spec.yml ~/.improved_jenkins_client/spec.yml
 # Create the server certificate used by functional tests
-sudo cp -f travis/ssl/server.cert.pem ~/.jenkins_api_client/server.cert.pem
+sudo cp -f travis/ssl/server.cert.pem ~/.improved_jenkins_client/server.cert.pem

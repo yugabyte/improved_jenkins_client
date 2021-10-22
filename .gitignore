@@ -39,7 +39,7 @@ tmtags
 *.swp
 
 # Skip the log file
-jenkins_api_client.log
+improved_jenkins_client.log
 
 # Vagrant
 .vagrant

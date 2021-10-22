@@ -67,12 +67,12 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
-  config.vm.synced_folder ".", "/opt/jenkins_api_client"
+  config.vm.synced_folder ".", "/opt/improved_jenkins_client"
 
   config.vm.provision :shell, :inline =>
     " sudo apt-get update;" +
     " sudo apt-get install -y git ruby1.9.1-full rubygems libxslt-dev libxml2-dev;" +
-    " cd /opt/jenkins_api_client;" +
+    " cd /opt/improved_jenkins_client;" +
     " ls -lrt;" +
     " ruby1.9.1 --version;" +
     " sudo gem1.9.1 install bundler;" +

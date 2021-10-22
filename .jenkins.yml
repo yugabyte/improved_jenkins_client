@@ -1,5 +1,5 @@
-name: jenkins_api_client_func_tests
-git: git://github.com/arangamani/jenkins_api_client.git
+name: improved_jenkins_client_func_tests
+git: git://github.com/arangamani/improved_jenkins_client.git
 ref: master
 script:
  - bundle install

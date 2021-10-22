@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Kannan Manickam", "Yugabyte engineering team"]
   s.description = 
       "\nThis is a simple and easy-to-use Jenkins Api client with features focused on" +
-      "\nautomating Job configuration programaticaly. Based on the jenkins_api_client with" +
+      "\nautomating Job configuration programaticaly. Based on the improved_jenkins_client with" +
       "\nimprovements by Yugabyte engineering team."
 
   s.email = ["yugabyte-ci@users.noreply.github.com"]
