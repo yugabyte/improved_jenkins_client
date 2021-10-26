@@ -808,12 +808,19 @@ module JenkinsApi
     #   Jenkins that are not categorized in the API Client.
     #
     def handle_exception(response, to_send = "code", send_json = false, full_url: nil)
-      msg = "HTTP Code: #{response.code}, Response Body: #{response.body}"
-      unless full_url.nil?
-        msg += " URL: #{full_url}"
+      msg = "HTTP Code: #{response.code} "
+
+      msg += ", URL: #{full_url}" unless full_url.nil?
+
+      if @logger.level <= Logger::DEBUG
+        @logger.debug "#{msg}; Response Body: #{response.body}"
       end
-      @logger.debug msg
-      case response.code.to_i
+      response_code = response.code.to_i
+      if response_code >= 400
+        @logger.warn msg
+      end
+
+      case response_code
       # As of Jenkins version 1.519, the job builds return a 201 status code
       # with a Location HTTP header with the pointing the URL of the item in
       # the queue.
@@ -830,7 +837,7 @@ module JenkinsApi
       when 400
         matched = response.body.match(/<p>(.*)<\/p>/)
         api_message = matched[1] unless matched.nil?
-        @logger.debug "API message: #{api_message}"
+        @logger.warn "API message: #{api_message}"
         case api_message
         when /A job already exists with the name/
           raise Exceptions::JobAlreadyExists.new(@logger, api_message)
@@ -852,7 +859,7 @@ module JenkinsApi
       when 500
         matched = response.body.match(/Exception: (.*)<br>/)
         api_message = matched[1] unless matched.nil?
-        @logger.debug "API message: #{api_message}"
+        @logger.warn "API message: #{api_message}"
         raise Exceptions::InternalServerError.new(@logger, api_message)
       when 503
         raise Exceptions::ServiceUnavailable.new @logger
