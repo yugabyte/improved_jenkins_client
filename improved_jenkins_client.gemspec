@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{lib/|bin/|java_deps/|gemspec}) }
   s.require_paths = ['lib']
   s.homepage = 'https://github.com/yugabyte-db/improved_jenkins_client'
-  s.required_ruby_version = ::Gem::Requirement.new('~> 2.1')
+  s.required_ruby_version = ::Gem::Requirement.new('>= 2.1')
   s.rubygems_version = "2.4.5.1"
   s.summary = "Improved Jenkins JSON API Client"
   s.licenses = ["MIT"]

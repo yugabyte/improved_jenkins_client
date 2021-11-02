@@ -257,6 +257,13 @@ module JenkinsApi
         stuck
       end
 
+      # Cancel the given task
+      #
+      # @param [String] task_id the task id
+      def cancel_item(task_id)
+        @client.api_post_request("/queue/cancelItem?id=#{task_id}")
+      end
+
     end
   end
 end
